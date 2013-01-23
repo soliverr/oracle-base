@@ -1,0 +1,53 @@
+#!/bin/sh
+# postinst script for oracle-base
+#
+# see: dh_installdeb(1)
+
+set -e
+
+# summary of how this script can be called:
+#        * <postinst> `configure' <most-recently-configured-version>
+#        * <old-postinst> `abort-upgrade' <new version>
+#        * <conflictor's-postinst> `abort-remove' `in-favour' <package>
+#          <new-version>
+#        * <postinst> `abort-remove'
+#        * <deconfigured's-postinst> `abort-deconfigure' `in-favour'
+#          <failed-install-package> <version> `removing'
+#          <conflicting-package> <version>
+# for details, see http://www.debian.org/doc/debian-policy/ or
+# the debian-policy package
+
+#DEBHELPER#
+
+postinst "debian" "$@"
+
+_attr() {
+  flags="${4:-}"
+  chown $flags "$2" "$3" && chmod $flags "$1" "$3"
+}
+
+case "$1" in
+    configure)
+        # Set filesystem rights
+        dpkg -L oracle-base | while read line ; do
+            [ -f $line ] && continue
+            case "$line" in
+                /var/log/oracle ) _attr 2775 oracle:dba $line ;;
+                /etc/oracle ) _attr 2775 oracle:dba $line ;;
+                /var/tmp/.oracle ) _attr 1777 root:root $line ;;
+                /tmp/.oracle ) _attr 1777 root:root $line ;;
+            esac
+        done
+    ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+    null)
+        exit 0
+    ;;
+    *)
+        echo "postinst called with unknown argument \`$@'" >&2
+        exit 1
+    ;;
+esac
+
+exit 0

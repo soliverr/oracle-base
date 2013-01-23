@@ -1,0 +1,23 @@
+oracle-base
+-----------
+
+It is base package for Oracle (RDBMS) software.
+
+The package includes directories layout, UNIX users and groups to maintain Oracle software.
+
+Directories destination:
+
+ - /etc/oracle - directory to keep configurations: TNSADMIN for Oracle SQL*Net, Wallets, etc.
+ - /opt/oracle - directory to install Oracle software
+ - /var/log/oracle - directory to keep logfiles
+
+UNIXs' groups:
+
+ - oracle   - primary group for user `oracle'
+ - oinstall - recommended group for Oracle software owner
+
+UNIXs' users:
+
+ - oracle  - owner of running Oracle services (preferably for RDBMS)
+
+ -- Sergey Kryazhevskikh <soliverr@gmail.com>

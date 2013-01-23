@@ -1,0 +1,13 @@
+Source: oracle-base
+Section: rdbms
+Priority: required
+Maintainer: Kryazhevskikh Sergey, <soliverr@gmail.com>
+
+Package: oracle-base
+Architecture: all
+Depends: bash, passwd
+Description: Directories layout for Oracle Software.
+ This package provides directories layout for Oracle sofware
+ and add users and groups for Oracles'services.
+ .
+
