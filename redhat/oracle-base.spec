@@ -9,7 +9,6 @@ Version   : 2.0
 Release   : 1
 Group     : RDBMS
 
-Vendor    : ЗАО "ЭР-Телеком Холдинг", г. Пермь
 Packager  : Kryazhevskikh Sergey, <soliverr@gmail.com>
 License   : GPLv2
 
