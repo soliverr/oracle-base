@@ -1,6 +1,3 @@
-#
-# $Id$
-#
 
 Summary   :  Directory layout for Oracle Software.
 Summary(ru_RU.UTF-8)   : Иерархия каталогов для ПО Oracle.

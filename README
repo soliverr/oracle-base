@@ -7,8 +7,8 @@ The package includes directories layout, UNIX users and groups to maintain Oracl
 
 Directories destination:
 
- - /etc/oracle - directory to keep configurations: TNSADMIN for Oracle SQL*Net, Wallets, etc.
- - /opt/oracle - directory to install Oracle software
+ - /etc/oracle     - directory to keep configurations: TNSADMIN for Oracle SQL*Net, Wallets, etc.
+ - /opt/oracle     - directory to install Oracle software
  - /var/log/oracle - directory to keep logfiles
 
 UNIXs' groups:
