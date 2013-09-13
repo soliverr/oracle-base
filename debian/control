@@ -2,6 +2,7 @@ Source: oracle-base
 Section: rdbms
 Priority: required
 Maintainer: Kryazhevskikh Sergey, <soliverr@gmail.com>
+Build-Depends: debhelper (>= 5)
 
 Package: oracle-base
 Architecture: all
