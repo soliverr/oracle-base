@@ -93,10 +93,10 @@ postrm "redhat" "$action"
 %defattr(-,root,root)
 %doc README
 %dir /opt/oracle
-%dir %attr(2775,oracle,dba) /var/log/oracle
+%dir %attr(2775,oracle,oracle) /var/log/oracle
 %dir %attr(1777,-,-) /var/tmp/.oracle
 %dir %attr(1777,-,-) /tmp/.oracle
-%dir %attr(2775,oracle,dba) /etc/oracle
+%dir %attr(2775,oracle,oracle) /etc/oracle
 
 %changelog
 * Thu Aug 18 2011 Kryazhevskikh Sergey <soliverr@gmail.com> - 2.0-1  17:00:04 +0600
