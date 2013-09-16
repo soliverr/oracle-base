@@ -1,5 +1,5 @@
 Source: oracle-base
-Section: rdbms
+Section: database
 Priority: required
 Maintainer: Kryazhevskikh Sergey, <soliverr@gmail.com>
 Build-Depends: debhelper (>= 5)

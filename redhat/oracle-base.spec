@@ -4,7 +4,7 @@ Summary(ru_RU.UTF-8)   : Иерархия каталогов для ПО Oracle.
 Name      : oracle-base
 Version   : 2.0
 Release   : 1
-Group     : RDBMS
+Group     : Database
 
 Packager  : Kryazhevskikh Sergey, <soliverr@gmail.com>
 License   : GPLv2
