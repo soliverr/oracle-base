@@ -21,4 +21,7 @@ UNIXs' users:
 
  - oracle  - owner of running Oracle services (preferably for RDBMS)
 
+
+Project is hosted on SourceForge: http://sourceforge.net/projects/oracledba
+
  -- Sergey Kryazhevskikh <soliverr@gmail.com>
