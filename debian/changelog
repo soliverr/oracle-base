@@ -1,18 +1,26 @@
+oracle-base (3.0-1) stable; urgency=low
+
+ * Added orabase-functions [tickets:#4]
+ * Added /var/spool/oracle directory
+ * Change default group for directories to `oinstall'
+
+ --  Kryazhevskikh Sergey <soliverr@gmail.com>  Fri, 18 Oct 2013 11:51:03 +0600
+
 oracle-base (2.0-1) stable; urgency=low
 
-  * New base directories for Oracle software
-  * `oinstall' group for Oracle software
+ * New base directories for Oracle software
+ * `oinstall' group for Oracle software
 
  -- Kryazhevskikh Sergey <soliverr@gmail.com>  Thu, 18 Aug 2011 17:00:04 +0600
 
 oracle-base (1.0-3) stable; urgency=low
 
-  * Added oraInventory directory
+ * Added oraInventory directory
 
  -- Kryazhevskikh Sergey <soliverr@gmail.com>  Thu, 04 Aug 2011 17:24:49 +0600
 
 oracle-base (1.0-1) stable; urgency=low
 
-  * Initial version of package
+ * Initial version of package
 
  -- Kryazhevskikh Sergey <soliverr@gmail.com>  Wed, 25 May 2011 13:00:06 +0600

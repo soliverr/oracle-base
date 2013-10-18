@@ -37,6 +37,7 @@ install: build
 	dh_testroot
 	dh_prep
 	dh_installdirs
+	dh_install
 	
 	ln -s ../_pkg-functions debian/$(package).postrm.debhelper
 	ln -s ../_pkg-functions debian/$(package).prerm.debhelper
