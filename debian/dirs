@@ -1,5 +1,6 @@
 etc/oracle
 opt/oracle
-var/tmp/.oracle
 tmp/.oracle
-var/log/oracle/
+var/tmp/.oracle
+var/log/oracle
+var/spool/oracle
