@@ -5,7 +5,7 @@
 Summary   :  Directory layout for Oracle Software.
 Summary(ru_RU.UTF-8)   : Иерархия каталогов для ПО Oracle.
 Name      : oracle-base
-Version   : 2.0
+Version   : 3.0
 Release   : 1
 Group     : RDBMS
 
@@ -39,9 +39,11 @@ Directory layout and system users and groups for Oracle Software.
 
 %{__install} -d %{buildroot}/etc/oracle
 %{__install} -d %{buildroot}/opt/oracle
-%{__install} -d %{buildroot}/var/tmp/.oracle
 %{__install} -d %{buildroot}/tmp/.oracle
+%{__install} -d %{buildroot}/var/tmp/.oracle
 %{__install} -d %{buildroot}/var/log/oracle/
+%{__install} -d %{buildroot}/var/spool/oracle/
+%{__install} -D orabase-functions %{buildroot}/lib/lsb/orabase-functions
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -96,12 +98,18 @@ postrm "redhat" "$action"
 %defattr(-,root,root)
 %doc README
 %dir /opt/oracle
-%dir %attr(2775,oracle,dba) /var/log/oracle
+%dir %attr(2775,oracle,oinstall) /etc/oracle
+%dir %attr(2775,oracle,oinstall) /var/log/oracle
+%dir %attr(2775,oracle,oinstall) /var/spool/oracle
 %dir %attr(1777,-,-) /var/tmp/.oracle
 %dir %attr(1777,-,-) /tmp/.oracle
-%dir %attr(2775,oracle,dba) /etc/oracle
+%attr(644,-,-) /lib/lsb/*
 
 %changelog
+* Fri Oct 18 2013 Kryazhevskikh Sergey <soliverr@gmail.com> - 3.0-1  11:51:03 +0600
+- Added orabase-functions [tickets:#4]
+- Change default group for directories to `oinstall'
+
 * Thu Aug 18 2011 Kryazhevskikh Sergey <soliverr@gmail.com> - 2.0-1  17:00:04 +0600
 - New base directories for Oracle software
 - `oinstall' group for Oracle software

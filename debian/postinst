@@ -32,8 +32,9 @@ case "$1" in
         dpkg -L oracle-base | while read line ; do
             [ -f $line ] && continue
             case "$line" in
-                /var/log/oracle ) _attr 2775 oracle:dba $line ;;
-                /etc/oracle ) _attr 2775 oracle:dba $line ;;
+                /var/log/oracle ) _attr 2775 oracle:oinstall $line ;;
+                /var/spool/oracle ) _attr 2775 oracle:oinstall $line ;;
+                /etc/oracle ) _attr 2775 oracle:oinstall $line ;;
                 /var/tmp/.oracle ) _attr 1777 root:root $line ;;
                 /tmp/.oracle ) _attr 1777 root:root $line ;;
             esac
