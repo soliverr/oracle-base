@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Script settings
+ORACLE_HOME="/u01/app/oracle/product/11.2.0/dbhome_1"
+ORACLE_SID="NSSER_GOROD_ST"
+ORACLE_USER="oracle"
+LOCK_FILE="/tmp/adr_purge.lck"
+PURGE_DAYS=10 #in days
+PURGE_AGE=$((PURGE_DAYS*1440)) # in minutes
+
+# Check user id
+USER="$(/usr/bin/id -u -nr)"
+
+if [ "$USER" != "$ORACLE_USER" ]
+then
+echo "ERR: Script must be run as $ORACLE_USER user."
+exit 99
+fi
+
+# Check if ORACLE_HOME is set
+if [ -z ${ORACLE_HOME} ]
+then
+echo "ERR: ORACLE_HOME must be set."
+exit 98
+fi
+
+# Check if lock file exists
+if [ -e "$LOCK_FILE" ]
+then
+echo "ERR: Script currently running or aborted uncleanly."
+echo "If the script isn't active, delete $LOCK_FILE and rerun it."
+exit 97
+fi
+
+# Create lock file
+/bin/touch $LOCK_FILE 2>/dev/null
+if [ $? -ne 0 ]
+then
+echo "ERR: Can not create lock file $LOCK_FILE"
+exit 96
+fi
+
+# Starting purge operation
+START_DATE="$(/bin/date)"
+echo "INF: Starting purge operations at $START_DATE"
+echo ""
+
+# Purging...
+adrci_bases="default $ORACLE_HOME/log"
+for ab in $adrci_bases ; do
+  if [ "$ab" != "default" ] ; then
+     set_base="set base $ab;"
+  else
+     set_base=
+  fi
+  echo "INF: purging ORACLE_BASE $ab"
+$ORACLE_HOME/bin/adrci exec="$set_base show homes" | grep -v : | while read LINE
+do
+echo "INF: purging home $LINE"
+echo " purging ALERT"
+$ORACLE_HOME/bin/adrci exec="$set_base set homepath $LINE;purge -age $PURGE_AGE -type ALERT"
+echo " purging INCIDENT"
+$ORACLE_HOME/bin/adrci exec="$set_base set homepath $LINE;purge -age $PURGE_AGE -type INCIDENT"
+echo " purging TRACE"
+$ORACLE_HOME/bin/adrci exec="$set_base set homepath $LINE;purge -age $PURGE_AGE -type TRACE"
+echo " purging CDUMP"
+$ORACLE_HOME/bin/adrci exec="$set_base set homepath $LINE;purge -age $PURGE_AGE -type CDUMP"
+echo " purging HM"
+$ORACLE_HOME/bin/adrci exec="$set_base set homepath $LINE;purge -age $PURGE_AGE -type HM"
+echo ""
+done
+done
+
+# Remove lock file
+rm -f $LOCK_FILE
+
+# Finish purge operation
+END_DATE="$(/bin/date)"
+echo "INF: Purge operations ended at $END_DATE"
+
