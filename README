@@ -22,6 +22,9 @@ UNIXs' users:
  - oracle  - owner of running Oracle services (preferably for RDBMS)
 
 
-Project is hosted on SourceForge: http://sourceforge.net/projects/oracledba
+Project is hosted on GitHub: https://github.com/soliverr/oracle-base
+Source mirrored on http://sourceforge.net/projects/oracledba
+
+Files can be downloaded from SourceForge: http://sourceforge.net/projects/oracledba/files
 
  -- Sergey Kryazhevskikh <soliverr@gmail.com>
